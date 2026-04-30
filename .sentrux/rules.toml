@@ -1,0 +1,15 @@
+[constraints]
+max_cycles = 0
+max_coupling = "B"
+max_cc = 25
+no_god_files = true
+
+[[layers]]
+name = "emitters"
+paths = ["emitters/*"]
+order = 0
+
+[[layers]]
+name = "envelope"
+paths = ["envelope/*"]
+order = 1
