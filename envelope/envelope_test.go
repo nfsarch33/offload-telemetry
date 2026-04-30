@@ -47,6 +47,10 @@ func TestNewEvent_PropertyDoesNotLeakPromptBodyOrSecret(t *testing.T) {
 	t.Parallel()
 
 	property := func(prompt, body, secret string) bool {
+		prompt = "prompt-marker-" + prompt
+		body = "body-marker-" + body
+		secret = "secret-marker-" + secret
+
 		event := NewEvent(Input{
 			Model:           "gpt-5.5",
 			LatencyMS:       10,
