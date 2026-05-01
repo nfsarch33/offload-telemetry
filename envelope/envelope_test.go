@@ -82,6 +82,10 @@ func TestNewEvent_MatchesStableSchema(t *testing.T) {
 	t.Parallel()
 
 	event := NewEvent(Input{
+		RecordedAt:         "2026-05-01T01:23:45Z",
+		Tier:               "a",
+		Decision:           "offloaded",
+		Route:              "claude_code_subagent",
 		Model:              "gpt-5.5",
 		LatencyMS:          99,
 		TokensPerSecond:    12.5,
@@ -89,6 +93,7 @@ func TestNewEvent_MatchesStableSchema(t *testing.T) {
 		CostUSD:            0.07,
 		StatusCode:         202,
 		ParentTaskID:       "parent-1",
+		Sender:             "cursor-ide",
 		Prompt:             "do not include",
 	})
 
@@ -98,14 +103,19 @@ func TestNewEvent_MatchesStableSchema(t *testing.T) {
 	}
 
 	want := `{
+  "recorded_at": "2026-05-01T01:23:45Z",
   "schema_version": "offload.telemetry.v1",
+  "tier": "a",
+  "decision": "offloaded",
+  "route": "claude_code_subagent",
   "model": "gpt-5.5",
   "latency_ms": 99,
   "tokens_per_second": 12.5,
   "time_to_first_token_ms": 33,
   "cost_usd": 0.07,
   "status_code": 202,
-  "parent_task_id": "parent-1"
+  "parent_task_id": "parent-1",
+  "sender": "cursor-ide"
 }`
 	if string(encoded) != want {
 		t.Fatalf("schema mismatch\nwant:\n%s\n\ngot:\n%s", want, encoded)
