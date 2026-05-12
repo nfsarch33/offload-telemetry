@@ -1,0 +1,53 @@
+# offload-telemetry
+
+> Go module for redacted Claude Code and Codex offload telemetry. Captures
+> operational fields (model, latency, tokens/sec, TTFT, cost, status) while
+> ensuring prompts, request bodies, and secrets are never emitted.
+
+## Overview
+
+- Name: offload-telemetry
+- Purpose: Shared Go module emitting redacted telemetry events for Claude Code and Codex CLI offload sessions; tracks model, latency (ms), tokens/sec, TTFT (ms), cost (USD), upstream status, and parent task ID without capturing any prompt or secret data.
+- Language(s): Go
+- License: MIT
+- Authoritative README: <https://github.com/nfsarch33/offload-telemetry#readme>
+- Source of truth branch: `main`
+
+## Quick Start
+
+- Import:
+  ```go
+  import "github.com/nfsarch33/offload-telemetry"
+  ```
+- Build and test:
+  ```
+  make test
+  make vet
+  make lint
+  ```
+- Minimum runtime prerequisites: Go 1.22+
+
+## Key Concepts
+
+- Redacted-by-design envelope: only operational fields are emitted
+- Fields: model, latency_ms, tokens_per_sec, ttft_ms, cost_usd, status_code, parent_task_id
+- No prompts, request bodies, provider tokens, bearer headers, or secrets in events
+- Sentrux quality gate: `make sentrux`
+
+## Runnable Examples
+
+- Run tests: `make test`
+- Run quality checks: `make vet && make lint && make sentrux`
+
+## Related Repos
+
+- [cursor-tools](https://github.com/nfsarch33/cursor-tools) — imports this module for tier-a CLI telemetry
+
+## Operational Notes
+
+- Issue tracker: <https://github.com/nfsarch33/offload-telemetry/issues>
+
+---
+
+*This file follows the emerging `llms.txt` convention adopted by cloudwego/eino,
+Anthropic tooling, and others.*
