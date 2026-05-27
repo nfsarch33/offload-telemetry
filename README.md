@@ -1,6 +1,6 @@
 # offload-telemetry
 
-Private Go module for redacted Claude Code and Codex offload telemetry.
+Go module for redacted Claude Code and Codex offload telemetry.
 
 The envelope deliberately keeps only operational fields:
 
@@ -14,11 +14,22 @@ The envelope deliberately keeps only operational fields:
 
 Prompts, request bodies, provider tokens, bearer headers, and secrets are never part of the emitted event shape.
 
-## Commands
+## Usage
+
+Import as a Go module:
+
+```go
+import "github.com/nfsarch33/offload-telemetry"
+```
+
+## Development
 
 ```bash
 make test
 make vet
 make lint
-make sentrux
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
